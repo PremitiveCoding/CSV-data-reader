@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const csv = require('fast-csv');
-const User = require("../Models/User");
+const Sale = require("../Models/Sale");
 
 exports.create = async (req, res) => {
   console.log(req.file);
@@ -14,9 +14,9 @@ console.log(path.join(__dirname, '../', '/public/csv/' + req.file.filename))
     .on('data', row => totalRecords.push(row))
     .on('end', async rowCount => {
       try{
-        const users = await User.insertMany(totalRecords);
+        const sales = await Sale.insertMany(totalRecords);
         
-        res.json(users);
+        res.json(sales);
       }catch(err){
         res.status(400).json(err);
       }

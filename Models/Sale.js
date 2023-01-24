@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const UserSchema = new mongoose.Schema(
+const SaleSchema = new mongoose.Schema(
   {
     invoiceId:{
       type:String
@@ -59,4 +59,4 @@ const UserSchema = new mongoose.Schema(
   }
 );
 
-module.exports = User = mongoose.model("User", UserSchema);
+module.exports = Sale = mongoose.model("Sale", SaleSchema);
