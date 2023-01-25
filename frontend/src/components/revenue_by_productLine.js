@@ -56,7 +56,7 @@ const Horizontalchart =() => {
       });
     useEffect(()=> {
        const fetchData= async()=> {
-           const url = 'http://localhost:4001/revenue_by_productLine'
+           const url = 'https://matious-api.vercel.app/revenue_by_productLine'
          await fetch(url).then((data)=> {
              console.log("Api data", data)
              const res = data.json();

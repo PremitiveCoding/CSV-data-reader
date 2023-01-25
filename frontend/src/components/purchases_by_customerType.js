@@ -56,7 +56,7 @@ const Verticachart1 =() => {
       });
     useEffect(()=> {
        const fetchData= async()=> {
-           const url = 'http://localhost:4001/purchases_by_customerType'
+           const url = 'https://matious-api.vercel.app/purchases_by_customerType'
          await fetch(url).then((data)=> {
              console.log("Api data", data)
              const res = data.json();

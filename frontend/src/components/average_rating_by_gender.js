@@ -56,7 +56,7 @@ const VerticalChart2 =() => {
       });
     useEffect(()=> {
        const fetchData= async()=> {
-           const url = 'http://localhost:4001/average_rating_by_gender'
+           const url = 'https://matious-api.vercel.app/average_rating_by_gender'
          await fetch(url).then((data)=> {
              console.log("Api data", data)
              const res = data.json();
