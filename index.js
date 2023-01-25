@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 const Sale = require('./Models/Sale');
+const moment = require('moment');
 
 
 // Mongo connection
@@ -22,13 +23,13 @@ const app = express();
 
 app.use(cors());
 
-// CSv to Mongodb API
+// uploading SCV 
 const csvRoutes = require("./routes/csvRoutes");
 app.use("/api/uploadCsv", csvRoutes);
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 
-// API : Revenue brut ( Gross volume ) par catégorie ( Product Line ).
+// route : Revenue brut ( Gross volume ) par catégorie ( Product Line ).
 app.get('/revenue_by_productLine', (req, res) => {
   Sale.aggregate([
       { $group: { _id: "$productLine", totalRevenue: { $sum: "$grossIncome" } } }
@@ -41,7 +42,7 @@ app.get('/revenue_by_productLine', (req, res) => {
   });
 });
 
-// API : Nombre total des achats par type de client.
+// route : Nombre total des achats par type de client.
 app.get('/purchases_by_customerType', (req, res) => {
   Sale.aggregate([
       {
@@ -56,7 +57,7 @@ app.get('/purchases_by_customerType', (req, res) => {
   });
 });
 
-// API : Moyenne de rating par sexe
+// route : Moyenne de rating par sexe
 app.get('/average_rating_by_gender', (req, res) => {
   Sale.aggregate([
   {
@@ -70,7 +71,37 @@ app.get('/average_rating_by_gender', (req, res) => {
   res.json(result);
   });
   });
-  
+
+
+// route for sales by city
+app.get('/sales_by_city', (req, res) => {
+  Sale.aggregate([
+      {
+          $group: {
+              _id: '$city',
+              totalSales: { $sum: '$total' }
+          }
+      }
+  ], (err, result) => {
+      if(err) res.send(err);
+      res.json(result);
+  });
+});
+
+// route for costs of purchase by product line
+app.get('/purchases_by_productLine', (req, res) => {
+  Sale.aggregate([
+      {
+          $group: {
+              _id: '$productLine',
+              totalCosts: { $sum: '$cogs' }
+          }
+      }
+  ], (err, result) => {
+      if(err) res.send(err);
+      res.json(result);
+  });
+});
 
 
 
