@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 const Sale = require('./Models/Sale');
-const moment = require('moment');
 
 
 // Mongo connection
