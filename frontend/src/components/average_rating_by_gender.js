@@ -32,7 +32,7 @@ const options = {
       },
       title: {
         display: true,
-        text:  "Nombre total des achats par type de client",
+        text:  "Moyenne de rating par sexe",
       },
     },
   };
