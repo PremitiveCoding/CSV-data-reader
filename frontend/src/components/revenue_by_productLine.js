@@ -32,14 +32,13 @@ const options = {
       },
       title: {
         display: true,
-        text: 'revenue_by_productLine',
+        text:  "Revenue brut ( Gross volume ) par catégorie ( Product Line )",
       },
     },
   };
 
 const Horizontalchart =() => {
     const [data, setData] = useState({
-        labels:['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         datasets: [
           {
             label: 'Dataset 1',
@@ -58,38 +57,48 @@ const Horizontalchart =() => {
     useEffect(()=> {
        const fetchData= async()=> {
            const url = 'http://localhost:4001/revenue_by_productLine'
-           const labelSet = []
-           const dataSet1 = [];
-           const dataSet2 = [];
          await fetch(url).then((data)=> {
              console.log("Api data", data)
              const res = data.json();
              return res
          }).then((res) => {
-             console.log("ressss", res)
-            for (const val of res) {
-                dataSet1.push(val._id);
-                dataSet2.push(val.totalRevenue)
-                // labelSet.push(val.name)
-            }
+           
+            const currentCategory = res.map(function(item) {
+              return item._id;
+            });
+            const currentValue = res.map(function(item) {
+              return item.totalRevenue;
+            });
             setData({
-                labels:['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                labels:currentCategory,
                 datasets: [
                   {
                     label: 'Dataset ID',
-                    data:dataSet1,
-                    borderColor: 'rgb(255, 99, 132)',
-                    backgroundColor: 'rgba(99, 132, 0.5)',
+                    data:currentValue,
+                    backgroundColor: [
+                        'rgba(255, 26, 104, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(0, 0, 0, 0.2)'
+                      ],
+                      borderColor: [
+                        'rgba(255, 26, 104, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(0, 0, 0, 1)'
+                      ],
+                      borderWidth: 1
                   },
-                  {
-                    label: 'Dataset ID2',
-                    data:dataSet2,
-                    borderColor: 'rgb(53, 162, 235)',
-                    backgroundColor: 'rgba(53, 235, 0.5)',
-                  },
+                 
                 ],
               })
-            console.log("arrData", dataSet1, dataSet2)
+            console.log("arrData", currentCategory, currentValue)
          }).catch(e => {
                 console.log("error", e)
             })
