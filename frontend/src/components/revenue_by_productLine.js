@@ -105,7 +105,7 @@ const Horizontalchart =() => {
     return(
         <div style={{width:'80%', height:'50%'}}>
             {
-                console.log("dataaaaaaaa", data)
+                console.log("data", data)
             }
             <Bar data={data} options={options}/>
          </div>)
