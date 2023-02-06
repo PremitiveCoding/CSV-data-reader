@@ -17,8 +17,6 @@ function App() {
       <VerticalChart3/>
       <VerticalChart2/>
       <VerticalChart4/>
-
-
     </div>
   );
 }
