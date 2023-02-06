@@ -1,6 +1,6 @@
 **Controllers: csvController.js**
 
-This is a Node.js function for creating sales records from a CSV file and storing them in a database using the MongoDB and Mongoose. The code is using the "fs" module to read the contents of the uploaded CSV file, the "fast-csv" module to parse the contents of the file into a series of records, and the "Sale" module to model and store these records in the database. When this function is called, it will read the contents of the uploaded file, parse the contents into individual records, and then store each record as a new document in the "sales" collection. The response will either return the created sales records or a status code of 400 and an error message, in case of any errors during the process.
+This is a Node.js function for creating sales records from a CSV file and storing them in a database using the MongoDB and Mongoose. The controller is using the "fs" module to read the contents of the uploaded CSV file, the "fast-csv" module to parse the contents of the file into a series of records, and the "Sale" module to model and store these records in the database. When this function is called, it will read the contents of the uploaded file, parse the contents into individual records, and then store each record as a new document in the "sales" collection. The response will either return the created sales records or a status code of 400 and an error message, in case of any errors during the process.
 
 **Routes : CsvRoutes.js**
 
@@ -16,7 +16,7 @@ Finally, the router is exported as a module to be used in another part of the ap
 
 **Server index.js:**
 
-The file you posted is a Node.js script using the Express framework. It sets up a web server that listens on port 4001. The script has several endpoints that perform aggregations on data stored in a MongoDB database. The database is connected to using Mongoose and the connection details are stored in a URI string.
+index.js is a Node.js script using the Express framework. It sets up a web server that listens on port 4001. The script has several endpoints that perform aggregations on data stored in a MongoDB database. The database is connected to using Mongoose and the connection details are stored in a URI string.
 
 The script sets up several routes for aggregations on a "Sale" model, including:
 

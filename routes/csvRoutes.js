@@ -46,3 +46,7 @@ router.post(
 
 
 module.exports = router; // Export the router for use in other parts of the code
+
+
+//This code is setting up an Express router and defining a single endpoint for uploading a CSV file. 
+//The endpoint will handle a single file and expects it to be named "csvFile" in the form data.

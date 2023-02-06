@@ -27,3 +27,8 @@ exports.create = async (req, res) => { // Exporting the "create" function to be 
     res.status(400).json(error) // If there is an error, return a status code of 400 and the error message as the response
   }
 };
+
+
+//When this function is called, it will read the contents of the uploaded file, 
+//parse the contents into individual records,
+//and then store each record as a new document in the "sales" collection
