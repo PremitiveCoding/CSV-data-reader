@@ -37,7 +37,8 @@ const options = {
     },
   };
 
-const Horizontalchart =() => {
+  const Horizontalchart =() => {
+    // Declare the data state with initial values
     const [data, setData] = useState({
         datasets: [
           {
@@ -46,24 +47,29 @@ const Horizontalchart =() => {
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(25, 90, 13, 0.5)',
           },
-          
         ],
       });
+
+    // Use the useEffect hook to fetch data from an API and update the data state
     useEffect(()=> {
        const fetchData= async()=> {
+           // Define the API URL
            const url = 'https://matious-api.vercel.app/revenue_by_productLine'
+           // Fetch the data from the API
          await fetch(url).then((data)=> {
              console.log("Api data", data)
+             // Parse the data to JSON
              const res = data.json();
              return res
          }).then((res) => {
-           
+            // Extract the category and value data from the API response
             const currentCategory = res.map(function(item) {
               return item._id;
             });
             const currentValue = res.map(function(item) {
               return item.totalRevenue;
             });
+            // Update the data state with the new values
             setData({
                 labels:currentCategory,
                 datasets: [
@@ -99,14 +105,19 @@ const Horizontalchart =() => {
             })
         }
         
+        // Call the fetchData function
         fetchData();
-    },[])
+    },[]) // The second argument in the useEffect hook is an empty array which tells the hook to only run once on component mount.
    
+    
+
     return(
+        // Render a div with the bar chart
         <div style={{width:'80%', height:'50%'}}>
             {
                 console.log("data", data)
             }
+            
             <Bar data={data} options={options}/>
          </div>)
 }
